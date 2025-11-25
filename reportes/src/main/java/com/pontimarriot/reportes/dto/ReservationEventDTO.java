@@ -7,4 +7,5 @@ public record ReservationEventDTO(
         String guestId,
         String roomId,
         LocalDateTime createdAt
+        //interger
 ) {}
