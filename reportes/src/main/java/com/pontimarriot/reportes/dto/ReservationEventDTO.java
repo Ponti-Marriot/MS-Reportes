@@ -1,11 +1,11 @@
 package com.pontimarriot.reportes.dto;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public record ReservationEventDTO(
+        String eventType,
         String reservationId,
-        String guestId,
-        String roomId,
-        LocalDateTime createdAt
-        //interger
+        String correlationId,
+        OffsetDateTime occurredAt
 ) {}

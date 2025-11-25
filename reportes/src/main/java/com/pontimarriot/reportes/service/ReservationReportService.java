@@ -21,10 +21,10 @@ public class ReservationReportService {
 
         ReportReservation report = new ReportReservation(
                 UUID.randomUUID().toString(),
+                event.eventType(),
                 event.reservationId(),
-                event.guestId(),
-                event.roomId(),
-                event.createdAt()
+                event.correlationId(),
+                event.occurredAt()
         );
 
         repository.save(report);

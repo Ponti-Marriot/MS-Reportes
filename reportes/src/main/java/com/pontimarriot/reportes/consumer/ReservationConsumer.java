@@ -22,15 +22,42 @@ public class ReservationConsumer {
         this.reportService = reportService;
     }
 
+    // ---- CREATED ----
     @Bean
     public Consumer<Message<ReservationEventDTO>> reservationCreated() {
         return message -> {
-            log.info("Evento recibido: {}", message);
-            log.info("Payload: {}", message.getPayload());
-
+            log.info("[CREATED] Evento recibido: {}", message);
             ReservationEventDTO event = message.getPayload();
+            reportService.saveFromEvent(event);
+        };
+    }
 
-            // Guardar en BD del microservicio
+    // ---- CONFIRMED ----
+    @Bean
+    public Consumer<Message<ReservationEventDTO>> reservationConfirmed() {
+        return message -> {
+            log.info("[CONFIRMED] Evento recibido: {}", message);
+            ReservationEventDTO event = message.getPayload();
+            reportService.saveFromEvent(event);
+        };
+    }
+
+    // ---- CANCELLED ----
+    @Bean
+    public Consumer<Message<ReservationEventDTO>> reservationCancelled() {
+        return message -> {
+            log.info("[CANCELLED] Evento recibido: {}", message);
+            ReservationEventDTO event = message.getPayload();
+            reportService.saveFromEvent(event);
+        };
+    }
+
+    // ---- REJECTED ----
+    @Bean
+    public Consumer<Message<ReservationEventDTO>> reservationRejected() {
+        return message -> {
+            log.info("[REJECTED] Evento recibido: {}", message);
+            ReservationEventDTO event = message.getPayload();
             reportService.saveFromEvent(event);
         };
     }

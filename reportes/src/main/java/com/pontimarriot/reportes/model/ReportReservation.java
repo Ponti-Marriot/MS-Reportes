@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "report_reservations")
@@ -17,11 +17,9 @@ public class ReportReservation {
 
     @Id
     private String id;
-
-    private String reservation_id;
-    private String guestId;
-    private String roomId;
-
-    private LocalDateTime createdAt;
+    String eventType;
+    String reservationId;
+    String correlationId;
+    OffsetDateTime occurredAt;
 }
 
